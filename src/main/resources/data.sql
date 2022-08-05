@@ -1,0 +1,1 @@
+INSERT INTO libros (titulo,autor,precio) VALUES ('El loro que podía adivinar el futuro','Lamberti',1500);
