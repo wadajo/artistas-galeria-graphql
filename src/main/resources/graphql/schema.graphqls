@@ -1,0 +1,10 @@
+type Query{
+    libros: [Libro]
+}
+
+type Libro{
+    id: ID
+    titulo: String
+    nombre: String
+    precio: Float
+}
