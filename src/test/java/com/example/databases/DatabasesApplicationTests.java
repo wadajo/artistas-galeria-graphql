@@ -40,9 +40,9 @@ class DatabasesApplicationTests {
 	}
 	@Test
 	void repositorySizeIsOkWhenNewBookAdded(){
-		when(repository.findAll()).thenReturn(libros);
-
-		repository.save(new Libro(Long.parseLong("3"),"Scala","Hall",89.0));
+		Libro nuevo=new Libro(Long.parseLong("3"),"Scala","Hall",89.0);
+		Libro guardado=repository.save(nuevo);
+		Libro encontrado=repository.findById(Long.parseLong("3")).get();
 
 		assertThat(repository.findAll().size()).isEqualTo(3);
 	}
