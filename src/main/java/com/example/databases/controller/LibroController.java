@@ -6,9 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class LibroController {
@@ -22,8 +26,14 @@ public class LibroController {
     @GetMapping("/libros")
     @Transactional(readOnly = true)
     public ResponseEntity<List<Libro>> todosLosLibros(){
-        List<Libro> todos= repository.findAll();
-        return new ResponseEntity<>(todos, HttpStatus.OK);
+        return ResponseEntity.ok(repository.findAll());
+    }
+
+    @PostMapping("/libros")
+    @Transactional
+    public ResponseEntity<Libro> altaLibro(@RequestBody Libro nuevo){
+        Libro guardado=repository.findById(repository.save(nuevo).getId()).orElseThrow(NoSuchElementException::new);
+        return new ResponseEntity<>(guardado,HttpStatus.CREATED);
     }
 
 }
