@@ -1,5 +1,6 @@
-package com.example.databases;
+package com.example.databases.repository;
 
+import com.example.databases.model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
