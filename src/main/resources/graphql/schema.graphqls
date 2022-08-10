@@ -2,6 +2,10 @@ type Query{
     libros: [Libro]
 }
 
+type Mutation {
+    addLibro(titulo: String,autor: String,precio: Float): Libro
+}
+
 type Libro{
     id: ID
     titulo: String
