@@ -9,6 +9,6 @@ type Mutation {
 type Libro{
     id: ID
     titulo: String
-    nombre: String
+    autor: String
     precio: Float
 }
