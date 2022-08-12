@@ -2,6 +2,7 @@ package com.example.databases.controller;
 
 import com.example.databases.model.Libro;
 import com.example.databases.repository.LibroRepository;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,14 @@ public class LibroGraphqlController {
     }
 
     @MutationMapping
-    public Libro addLibro(String titulo, String autor, Float precio){
-        Libro nuevo=new Libro();
-        nuevo.setAutor(autor);
-        nuevo.setTitulo(titulo);
-        nuevo.setPrecio(Double.parseDouble(precio.toString()));
-        repository.save(nuevo);
-        return repository.findById(nuevo.getId()).orElseThrow(()->new RuntimeException());
+    public Libro addLibro(@Argument LibroInput nuevo){
+        Libro aGuardar=Libro.builder()
+                .titulo(nuevo.titulo())
+                .autor(nuevo.autor())
+                .precio(nuevo.precio())
+                .build();
+        return repository.save(aGuardar);
     }
 }
+
+record LibroInput(String titulo, String autor, double precio){}
