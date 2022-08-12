@@ -1,7 +1,7 @@
 package com.example.databases.controller;
 
-import com.example.databases.model.Libro;
-import com.example.databases.repository.LibroRepository;
+import com.example.databases.model.Obra;
+import com.example.databases.repository.ObraRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,24 +15,24 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
-public class LibroController {
+public class ObraController {
 
-    LibroRepository repository;
+    ObraRepository repository;
 
-    public LibroController(LibroRepository repository) {
+    public ObraController(ObraRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/libros")
+    @GetMapping("/obras")
     @Transactional(readOnly = true)
-    public ResponseEntity<List<Libro>> todosLosLibros(){
+    public ResponseEntity<List<Obra>> todasLasObras(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @PostMapping("/libros")
+    @PostMapping("/obras")
     @Transactional
-    public ResponseEntity<Libro> altaLibro(@Valid @RequestBody Libro nuevo){
-        Libro guardado=repository.findById(repository.save(nuevo).getId()).orElseThrow(NoSuchElementException::new);
+    public ResponseEntity<Obra> altaObra(@Valid @RequestBody Obra nueva){
+        Obra guardado=repository.findById(repository.save(nueva).getId()).orElseThrow(NoSuchElementException::new);
         return new ResponseEntity<>(guardado,HttpStatus.CREATED);
     }
 

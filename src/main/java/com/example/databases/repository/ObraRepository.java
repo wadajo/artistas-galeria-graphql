@@ -1,9 +1,9 @@
 package com.example.databases.repository;
 
-import com.example.databases.model.Libro;
+import com.example.databases.model.Obra;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LibroRepository extends JpaRepository<Libro,Long> {
+public interface ObraRepository extends JpaRepository<Obra,Long> {
 }

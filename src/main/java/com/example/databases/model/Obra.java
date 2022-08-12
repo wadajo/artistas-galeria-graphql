@@ -12,12 +12,12 @@ import javax.validation.constraints.Positive;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity (name="libros")
+@Entity (name="obras")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Libro {
+public class Obra {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -28,7 +28,7 @@ public class Libro {
     @Column
     @NotNull
     @NotBlank
-    private String autor;
+    private String artista;
     @Column
     @Positive(message = "El precio debe ser un número mayor que 0 (cero)")
     private Double precio;

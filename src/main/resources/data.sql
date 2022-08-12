@@ -1,3 +1,3 @@
-INSERT INTO libros (titulo,autor,precio) VALUES ('El loro que podía adivinar el futuro','Lamberti',1500);
-INSERT INTO libros (titulo,autor,precio) VALUES ('Cielos de Córdoba','Falco',900);
-INSERT INTO libros (titulo,autor,precio) VALUES ('Agosto','Paula',1000);
+INSERT INTO obras (titulo,artista,precio) VALUES ('Poemas para leer frente al espejo','Levstein',1000);
+INSERT INTO obras (titulo,artista,precio) VALUES ('Que aparezca Maresca','Kovensky',1200);
+INSERT INTO obras (titulo,artista,precio) VALUES ('Trampa de vocales','Casile',1300);
