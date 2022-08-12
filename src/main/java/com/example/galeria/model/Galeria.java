@@ -1,5 +1,6 @@
 package com.example.galeria.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,5 +27,6 @@ public class Galeria {
     private String nombre;
 
     @OneToMany(mappedBy = "galeria")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Collection<Obra> obras;
 }
