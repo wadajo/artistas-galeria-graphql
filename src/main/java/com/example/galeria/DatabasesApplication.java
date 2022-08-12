@@ -1,4 +1,4 @@
-package com.example.databases;
+package com.example.galeria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package com.example.databases.repository;
+package com.example.galeria.repository;
 
-import com.example.databases.model.Obra;
+import com.example.galeria.model.Obra;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

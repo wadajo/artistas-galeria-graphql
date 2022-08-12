@@ -1,7 +1,7 @@
-package com.example.databases;
+package com.example.galeria;
 
-import com.example.databases.model.Obra;
-import com.example.databases.repository.ObraRepository;
+import com.example.galeria.model.Obra;
+import com.example.galeria.repository.ObraRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +23,8 @@ class DatabasesApplicationTests {
 	@BeforeEach
 	void setUp() {
 		repository=mock(ObraRepository.class);
-		obras =Arrays.asList(new Obra(Long.parseLong("1"),"Java 1","Goetz",90.0),
-				new Obra(Long.parseLong("2"),"Python","Furlong",99.0));
+		obras =Arrays.asList(Obra.builder().artista("Picasso").titulo("Mujer con sombrero").precio(120000.0).build(),
+				Obra.builder().artista("Miró").titulo("Pájaro").precio(160000.0).build());
 	}
 
 	@Test

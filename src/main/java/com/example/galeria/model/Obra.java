@@ -1,11 +1,8 @@
-package com.example.databases.model;
+package com.example.galeria.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -20,16 +17,24 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Obra {
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "obra_id")
     private Long id;
+
     @Column
     @NotNull
     @NotBlank
     private String titulo;
+
     @Column
     @NotNull
     @NotBlank
     private String artista;
+
     @Column
     @Positive(message = "El precio debe ser un número mayor que 0 (cero)")
     private Double precio;
+
+    @ManyToOne
+    @JoinColumn(name = "galeria_id")
+    private Galeria galeria;
 }
