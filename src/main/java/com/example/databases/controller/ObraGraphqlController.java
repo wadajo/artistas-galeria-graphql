@@ -6,8 +6,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
-import java.util.Collection;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Controller
 public class ObraGraphqlController {
@@ -19,23 +19,23 @@ public class ObraGraphqlController {
     }
 
     @QueryMapping
-    public Collection<Obra> obras() {
-        return repository.findAll();
+    public Flux<Obra> obras() {
+        return Flux.fromIterable(repository.findAll());
     }
 
     @QueryMapping
-    public Collection<Obra> obrasPorArtista(@Argument String artista) {
-        return repository.findAllByArtista(artista);
+    public Flux<Obra> obrasPorArtista(@Argument String artista) {
+        return Flux.fromIterable(repository.findAllByArtista(artista));
     }
 
     @MutationMapping
-    public Obra addObra(@Argument ObraInput nueva){
+    public Mono<Obra> addObra(@Argument ObraInput nueva){
         Obra aGuardar= Obra.builder()
                 .titulo(nueva.titulo())
                 .artista(nueva.artista())
                 .precio(nueva.precio())
                 .build();
-        return repository.save(aGuardar);
+        return Mono.just(repository.save(aGuardar));
     }
 }
 

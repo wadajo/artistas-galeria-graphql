@@ -33,13 +33,5 @@ class DatabasesApplicationTests {
 
 		assertThat(repository.findAll().size()).isEqualTo(2);
 	}
-	@Test
-	void repositorySizeIsOkWhenNewBookAdded(){
-		Obra nuevo=new Obra(Long.parseLong("3"),"Scala","Hall",89.0);
-		Obra guardado=repository.save(nuevo);
-		Obra encontrado=repository.findById(Long.parseLong("3")).get();
-
-		assertThat(repository.findAll().size()).isEqualTo(3);
-	}
 
 }
