@@ -23,6 +23,11 @@ public class ObraGraphqlController {
         return repository.findAll();
     }
 
+    @QueryMapping
+    public Collection<Obra> obrasPorArtista(@Argument String artista) {
+        return repository.findAllByArtista(artista);
+    }
+
     @MutationMapping
     public Obra addObra(@Argument ObraInput nueva){
         Obra aGuardar= Obra.builder()
