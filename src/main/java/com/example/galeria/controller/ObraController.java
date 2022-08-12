@@ -46,4 +46,11 @@ public class ObraController {
         return ResponseEntity.ok(galeriaRepository.findAll());
     }
 
+    @PostMapping("/galerias")
+    @Transactional
+    public ResponseEntity<Galeria> altaGaleria(@Valid @RequestBody Galeria nueva){
+        Galeria guardada=galeriaRepository.findById(galeriaRepository.save(nueva).getId()).orElseThrow(NoSuchElementException::new);
+        return new ResponseEntity<>(guardada,HttpStatus.CREATED);
+    }
+
 }
