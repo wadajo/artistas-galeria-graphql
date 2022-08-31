@@ -27,16 +27,11 @@ public class Obra {
     private String titulo;
 
     @Column
-    @NotNull
-    @NotBlank
-    private String artista;
-
-    @Column
     @Positive(message = "El precio debe ser un número mayor que 0 (cero)")
     private Double precio;
 
     @ManyToOne
-    @JoinColumn(name = "galeria_id")
+    @JoinColumn(name = "artista_id")
     @JsonIgnore
-    private Galeria galeria;
+    private Artista artista;
 }

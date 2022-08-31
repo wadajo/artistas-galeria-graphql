@@ -1,8 +1,7 @@
 package com.example.galeria.controller;
 
-import com.example.galeria.model.Galeria;
+import com.example.galeria.model.Artista;
 import com.example.galeria.model.Obra;
-import com.example.galeria.repository.GaleriaRepository;
 import com.example.galeria.repository.ObraRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +19,9 @@ import java.util.NoSuchElementException;
 public class ObraController {
 
     ObraRepository obraRepository;
-    GaleriaRepository galeriaRepository;
 
-    public ObraController(ObraRepository obraRepository, GaleriaRepository galeriaRepository) {
+    public ObraController(ObraRepository obraRepository) {
         this.obraRepository = obraRepository;
-        this.galeriaRepository = galeriaRepository;
     }
 
     @GetMapping("/obras")
@@ -38,19 +35,6 @@ public class ObraController {
     public ResponseEntity<Obra> altaObra(@Valid @RequestBody Obra nueva){
         Obra guardado= obraRepository.findById(obraRepository.save(nueva).getId()).orElseThrow(NoSuchElementException::new);
         return new ResponseEntity<>(guardado,HttpStatus.CREATED);
-    }
-
-    @GetMapping("/galerias")
-    @Transactional(readOnly = true)
-    public ResponseEntity<List<Galeria>> todasLasGalerias(){
-        return ResponseEntity.ok(galeriaRepository.findAll());
-    }
-
-    @PostMapping("/galerias")
-    @Transactional
-    public ResponseEntity<Galeria> altaGaleria(@Valid @RequestBody Galeria nueva){
-        Galeria guardada=galeriaRepository.findById(galeriaRepository.save(nueva).getId()).orElseThrow(NoSuchElementException::new);
-        return new ResponseEntity<>(guardada,HttpStatus.CREATED);
     }
 
 }

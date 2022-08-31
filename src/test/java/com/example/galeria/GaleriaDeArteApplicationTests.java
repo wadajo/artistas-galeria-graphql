@@ -1,5 +1,6 @@
 package com.example.galeria;
 
+import com.example.galeria.model.Artista;
 import com.example.galeria.model.Obra;
 import com.example.galeria.repository.ObraRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,8 +24,9 @@ class GaleriaDeArteApplicationTests {
 	@BeforeEach
 	void setUp() {
 		repository=mock(ObraRepository.class);
-		obras =Arrays.asList(Obra.builder().artista("Picasso").titulo("Mujer con sombrero").precio(120000.0).build(),
-				Obra.builder().artista("Miró").titulo("Pájaro").precio(160000.0).build());
+		obras =Arrays.asList(
+				Obra.builder().artista(Artista.builder().apellido("Picasso").build()).titulo("Mujer con sombrero").precio(120000.0).build(),
+				Obra.builder().artista(Artista.builder().apellido("Miró").build()).titulo("Pájaro").precio(160000.0).build());
 	}
 
 	@Test

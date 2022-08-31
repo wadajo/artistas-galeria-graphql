@@ -1,7 +1,6 @@
 type Query{
     obras: [Obra]
-    obrasPorArtista(artista:String!): [Obra]
-    galerias: [Galeria]
+    obrasPorArtista(apellidoArtista:String!): [Obra]
 }
 
 type Mutation{
@@ -11,8 +10,8 @@ type Mutation{
 type Obra{
     id: ID
     titulo: String
-    artista: String
     precio: Float
+    artista: Artista
 }
 
 input ObraInput{
@@ -21,8 +20,8 @@ input ObraInput{
     precio: Float
 }
 
-type Galeria{
+type Artista{
     id: ID
-    nombre: String
+    apellido: String
     obras: [Obra]
 }
