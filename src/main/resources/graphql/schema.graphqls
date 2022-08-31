@@ -1,6 +1,7 @@
 type Query{
     obras: [Obra]
     obrasPorArtista(apellidoArtista:String!): [Obra]
+    artistas: [Artista]
 }
 
 type Mutation{
@@ -23,5 +24,6 @@ input ObraInput{
 type Artista{
     id: ID
     apellido: String
+    nacimiento: Int
     obras: [Obra]
 }

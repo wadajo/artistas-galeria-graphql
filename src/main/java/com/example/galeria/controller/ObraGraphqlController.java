@@ -1,5 +1,6 @@
 package com.example.galeria.controller;
 
+import com.example.galeria.model.Artista;
 import com.example.galeria.model.Obra;
 import com.example.galeria.model.ObraInput;
 import com.example.galeria.repository.ArtistaRepository;
@@ -11,6 +12,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Controller
 public class ObraGraphqlController {
@@ -33,6 +36,11 @@ public class ObraGraphqlController {
     @QueryMapping
     public Flux<Obra> obrasPorArtista(@Argument String apellidoArtista) {
         return Flux.fromIterable(obraRepository.findAllByApellidoArtista(apellidoArtista));
+    }
+
+    @QueryMapping
+    public Flux<Artista> artistas() {
+        return Flux.fromIterable(artistaRepository.findAll());
     }
 
     @MutationMapping

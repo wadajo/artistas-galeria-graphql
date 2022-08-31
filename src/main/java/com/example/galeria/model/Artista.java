@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -29,8 +30,9 @@ public class Artista {
     @NotBlank
     private String apellido;
 
-    @Basic
-    private Year nacimiento;
+    @Column
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private Integer nacimiento;
 
     @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

@@ -5,7 +5,7 @@ INSERT INTO obras (titulo,precio) VALUES ('Trampa de vocales',1300);
 INSERT INTO artistas (apellido,nacimiento) VALUES ('Levstein',1991);
 INSERT INTO artistas (apellido,nacimiento) VALUES ('Kovensky',1993);
 INSERT INTO artistas (apellido,nacimiento) VALUES ('Casile',1992);
-INSERT INTO artistas (apellido,nacimiento) VALUES ('Arrigoni',1985);
+INSERT INTO artistas (apellido) VALUES ('Arrigoni');
 
 -- para poblar las artistas de las obras en la primera carga
 UPDATE obras SET artista_id=1 WHERE obra_id=1;
