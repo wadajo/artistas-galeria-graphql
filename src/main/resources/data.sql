@@ -1,8 +1,8 @@
-INSERT INTO obras (titulo,artista,precio) VALUES ('Poemas para leer frente al espejo','Levstein',1000);
-INSERT INTO obras (titulo,artista,precio) VALUES ('Que aparezca Maresca','Kovensky',1200);
-INSERT INTO obras (titulo,artista,precio) VALUES ('Trampa de vocales','Casile',1300);
+INSERT INTO obras (titulo,precio) VALUES ('Poemas para leer frente al espejo',1000);
+INSERT INTO obras (titulo,precio) VALUES ('Que aparezca Maresca',1200);
+INSERT INTO obras (titulo,precio) VALUES ('Trampa de vocales',1300);
 
-INSERT INTO galerias (nombre) VALUES ('Subsuelo');
-INSERT INTO galerias (nombre) VALUES ('Crudo');
-INSERT INTO galerias (nombre) VALUES ('Fuga');
-INSERT INTO galerias (nombre) VALUES ('El gran vidrio');
+INSERT INTO artistas (apellido) VALUES ('Levstein');
+INSERT INTO artistas (apellido) VALUES ('Kovensky');
+INSERT INTO artistas (apellido) VALUES ('Casile');
+INSERT INTO artistas (apellido) VALUES ('Arrigoni');

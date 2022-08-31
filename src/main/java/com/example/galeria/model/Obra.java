@@ -1,6 +1,7 @@
 package com.example.galeria.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class Obra {
     private Double precio;
 
     @ManyToOne
-    @JoinColumn(name = "artista_id")
-    @JsonIgnore
+    @JoinColumn(name = "artista_id",insertable = false,updatable = false)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Artista artista;
 }

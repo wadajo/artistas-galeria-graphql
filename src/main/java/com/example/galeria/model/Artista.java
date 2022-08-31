@@ -19,6 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Artista {
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "artista_id")
     private Long id;
 
     @Column
@@ -26,7 +27,7 @@ public class Artista {
     @NotBlank
     private String apellido;
 
-    @OneToMany(mappedBy = "artista")
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Collection<Obra> obras;
 }

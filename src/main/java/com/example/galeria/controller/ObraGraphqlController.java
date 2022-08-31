@@ -2,6 +2,7 @@ package com.example.galeria.controller;
 
 import com.example.galeria.model.Artista;
 import com.example.galeria.model.Obra;
+import com.example.galeria.repository.ArtistaRepository;
 import com.example.galeria.repository.ObraRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -14,9 +15,11 @@ import reactor.core.publisher.Mono;
 public class ObraGraphqlController {
 
     ObraRepository obraRepository;
+    ArtistaRepository artistaRepository;
 
-    public ObraGraphqlController(ObraRepository obraRepository) {
+    public ObraGraphqlController(ObraRepository obraRepository, ArtistaRepository artistaRepository) {
         this.obraRepository = obraRepository;
+        this.artistaRepository = artistaRepository;
     }
 
     @QueryMapping
@@ -31,9 +34,16 @@ public class ObraGraphqlController {
 
     @MutationMapping
     public Mono<Obra> addObra(@Argument ObraInput nueva){
+        Artista existente=artistaRepository.findByApellido(nueva.artista()).orElseGet(()-> Artista.builder().apellido("").build());
+        Artista nuevo=existente.getApellido().equals(nueva.artista())?
+                Artista.builder().build():
+                artistaRepository.save(Artista.builder().apellido(nueva.artista()).build());
+        Artista deLaObra=existente.getApellido().equals(nueva.artista())?
+            existente:
+            nuevo;
         Obra aGuardar= Obra.builder()
                 .titulo(nueva.titulo())
-                .artista(Artista.builder().apellido(nueva.artista()).build())
+                .artista(deLaObra)
                 .precio(nueva.precio())
                 .build();
         return Mono.just(obraRepository.save(aGuardar));
