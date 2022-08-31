@@ -32,7 +32,7 @@ public class Obra {
     private Double precio;
 
     @ManyToOne
-    @JoinColumn(name = "artista_id",insertable = false,updatable = false)
+    @JoinColumn(name = "artista_id",referencedColumnName = "artista_id")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Artista artista;
 }
