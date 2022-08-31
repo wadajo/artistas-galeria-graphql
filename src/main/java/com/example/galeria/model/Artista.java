@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.Collection;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -26,6 +28,9 @@ public class Artista {
     @NotNull
     @NotBlank
     private String apellido;
+
+    @Basic
+    private Year nacimiento;
 
     @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
