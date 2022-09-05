@@ -1,10 +1,12 @@
 package com.example.galeria.controller;
 
 import com.example.galeria.model.Artista;
+import com.example.galeria.model.ArtistaInput;
 import com.example.galeria.model.Obra;
 import com.example.galeria.model.ObraInput;
 import com.example.galeria.repository.ArtistaRepository;
 import com.example.galeria.repository.ObraRepository;
+import com.example.galeria.service.ArtistaService;
 import com.example.galeria.service.ObraService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -21,11 +23,13 @@ public class ObraGraphqlController {
     ObraRepository obraRepository;
     ArtistaRepository artistaRepository;
     ObraService obraService;
+    ArtistaService artistaService;
 
-    public ObraGraphqlController(ObraRepository obraRepository, ArtistaRepository artistaRepository, ObraService obraService) {
+    public ObraGraphqlController(ObraRepository obraRepository, ArtistaRepository artistaRepository, ObraService obraService, ArtistaService artistaService) {
         this.obraRepository = obraRepository;
         this.artistaRepository = artistaRepository;
         this.obraService = obraService;
+        this.artistaService = artistaService;
     }
 
     @QueryMapping
@@ -46,6 +50,11 @@ public class ObraGraphqlController {
     @MutationMapping
     public Mono<Obra> addObra(@Argument ObraInput nueva){
         return Mono.just(obraService.guardarObra(nueva));
+    }
+
+    @MutationMapping
+    public Mono<Artista> updateArtista(@Argument ArtistaInput actualizado){
+        return Mono.just(artistaService.actualizarDatos(actualizado)).doOnError(Throwable::printStackTrace);
     }
 
 }

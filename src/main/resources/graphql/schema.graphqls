@@ -6,6 +6,7 @@ type Query{
 
 type Mutation{
     addObra(nueva: ObraInput): Obra
+    updateArtista(actualizado: ArtistaInput): Artista
 }
 
 type Obra{
@@ -15,15 +16,20 @@ type Obra{
     artista: Artista
 }
 
+type Artista{
+    id: ID
+    apellido: String
+    nacimiento: Int
+    obras: [Obra]
+}
+
 input ObraInput{
     titulo: String
     artista: String
     precio: Float
 }
 
-type Artista{
-    id: ID
+input ArtistaInput{
     apellido: String
     nacimiento: Int
-    obras: [Obra]
 }
