@@ -4,6 +4,7 @@ import com.example.galeria.model.Artista;
 import com.example.galeria.model.ArtistaInput;
 import com.example.galeria.repository.ArtistaRepository;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ArtistaService {
@@ -13,10 +14,10 @@ public class ArtistaService {
         this.artistaRepository = artistaRepository;
     }
 
-    public Artista actualizarDatos(ArtistaInput actualizado) throws RuntimeException {
+    public Mono<Artista> actualizarDatos(ArtistaInput actualizado) throws RuntimeException {
         Artista encontrado = artistaRepository.findByApellido(actualizado.apellido()).orElseThrow(()->new RuntimeException("Excepción: artista no encontrado"));
         if(null!=actualizado.nacimiento())
             encontrado.setNacimiento(actualizado.nacimiento());
-        return artistaRepository.save(encontrado);
+        return Mono.just(artistaRepository.save(encontrado));
     }
 }

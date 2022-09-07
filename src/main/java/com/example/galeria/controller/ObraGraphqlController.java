@@ -49,12 +49,12 @@ public class ObraGraphqlController {
 
     @MutationMapping
     public Mono<Obra> addObra(@Argument ObraInput nueva){
-        return Mono.just(obraService.guardarObra(nueva));
+        return obraService.guardarObra(nueva);
     }
 
     @MutationMapping
     public Mono<Artista> updateArtista(@Argument ArtistaInput actualizado){
-        return Mono.just(artistaService.actualizarDatos(actualizado)).doOnError(Throwable::printStackTrace);
+        return artistaService.actualizarDatos(actualizado).doOnError(Throwable::printStackTrace);
     }
 
 }

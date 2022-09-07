@@ -6,6 +6,7 @@ import com.example.galeria.model.ObraInput;
 import com.example.galeria.repository.ArtistaRepository;
 import com.example.galeria.repository.ObraRepository;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ObraService {
@@ -18,7 +19,7 @@ public class ObraService {
         this.obraRepository = obraRepository;
     }
 
-    public Obra guardarObra(ObraInput aGuardar){
+    public Mono<Obra> guardarObra(ObraInput aGuardar){
         Artista existente=artistaRepository.findByApellido(aGuardar.artista()).orElseGet(()-> Artista.builder().apellido("").build());
         Artista nuevo=existente.getApellido().equals(aGuardar.artista())?
                 Artista.builder().build():
@@ -31,6 +32,6 @@ public class ObraService {
                 .artista(deLaObra)
                 .precio(aGuardar.precio())
                 .build();
-        return obraRepository.save(nueva);
+        return Mono.just(obraRepository.save(nueva));
     }
 }
